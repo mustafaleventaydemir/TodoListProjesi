@@ -17,11 +17,12 @@ function runEvents() {
 function addTodo(e) {
     const inputText = addInput.value.trim();
     if (inputText == null || inputText == "") {
-        alert("Lütfen Bir Değer Giriniz.");
+        showAlert("danger", "Lütfen Boş Bırakmayınız.");
     } else {
         //arayüze ekleme
         addTodoToUI(inputText);
         addTodoToStorage(inputText);
+        showAlert("success", "Todo Eklendi.");
     }
     e.preventDefault();
 }
@@ -64,4 +65,19 @@ function checkTodosFromStorage() {
     } else {
         todos = JSON.parse(localStorage.getItem("todos"));
     }
+}
+function showAlert(type, message) {
+    /*<div class="alert alert-warning" role="alert">
+        A simple warning alert—check it out!
+    </div>*/
+    const div = document.createElement("div");
+    div.className = "alert alert-" + type;
+    //div.className = 'alert alert -& { type }'; //literal template
+    div.textContent = message;
+
+    firstCardBody.appendChild(div);
+
+    setTimeout(function () {
+        div.remove();
+    }, 2500);
 }
