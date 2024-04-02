@@ -67,9 +67,6 @@ function checkTodosFromStorage() {
     }
 }
 function showAlert(type, message) {
-    /*<div class="alert alert-warning" role="alert">
-        A simple warning alert—check it out!
-    </div>*/
     const div = document.createElement("div");
     div.className = "alert alert-" + type;
     //div.className = 'alert alert -& { type }'; //literal template
