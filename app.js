@@ -19,13 +19,18 @@ function runEvents() {
 
 function removeAllTodos() {
     const removeTodoList = document.querySelectorAll(".list-group-item");
-    //console.log(removeTodoList);
-    removeTodoList.forEach(function (todo) {
-        todo.remove();
-    })
+    if (removeTodoList.length > 0) {
+        //console.log(removeTodoList);
+        removeTodoList.forEach(function (todo) {
+            todo.remove();
+        })
 
-    todos = [];
-    localStorage.setItem("todos", JSON.stringify(todos));
+        todos = [];
+        localStorage.setItem("todos", JSON.stringify(todos));
+        showAlert("dark", "Todolarınız başarıyla silindi.");
+    } else {
+        showAlert("danger", "Todonuz bulunmamaktadır.");
+    }
 }
 
 function removeTodoToUI(e) {
