@@ -18,10 +18,25 @@ function runEvents() {
 
 function removeTodoToUI(e) {
     // console.log(e.target);
-    e.target.className = "fa fa-remove";
-    const removeTodo = e.target.parentElement.parentElement;
-    removeTodo.remove();
-    showAlert("info", "Todo Silindi.");
+    //Ekrandan Silme
+    if (e.target.className === "fa fa-remove") {
+        const removeTodo = e.target.parentElement.parentElement;
+        removeTodo.remove();
+
+        //LocalStorage silme
+        removeTodoToStorage(removeTodo.textContent);
+        showAlert("info", "Todo Silindi.");
+    }
+}
+
+function removeTodoToStorage(reTodo) {
+    checkTodosFromStorage();
+    todos.forEach(function (todo, index) {
+        if (reTodo === todo) {
+            todos.splice(index, 1);
+        }
+    });
+    localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 function pageLoaded() {
