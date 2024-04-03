@@ -13,7 +13,17 @@ runEvents();
 function runEvents() {
     form.addEventListener("submit", addTodo);
     document.addEventListener("DOMContentLoaded", pageLoaded);
+    secondCardBody.addEventListener("click", removeTodoToUI);
 }
+
+function removeTodoToUI(e) {
+    // console.log(e.target);
+    e.target.className = "fa fa-remove";
+    const removeTodo = e.target.parentElement.parentElement;
+    removeTodo.remove();
+    showAlert("info", "Todo Silindi.");
+}
+
 function pageLoaded() {
     checkTodosFromStorage();
     todos.forEach(function (todo) {
